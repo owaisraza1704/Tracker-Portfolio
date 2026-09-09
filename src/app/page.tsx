@@ -5,24 +5,42 @@ import { ArrowDown } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import FeaturedProjects from "@/components/FeaturedProjects";
 
-const plannedCapabilities = [
+const focusDomains = [
   {
     label: "01",
-    title: "Public portfolio",
+    title: "AI Systems Engineering",
     description:
-      "A polished, responsive view for projects, experience, writing, learning, and current work.",
+      "Building AI systems that connect models to real workflows, tools, state, and outcomes.",
   },
   {
     label: "02",
-    title: "Visual editor",
+    title: "Agentic Workflows",
     description:
-      "Add sections, edit text, manage cards, and reorder content without opening the source code.",
+      "Exploring planning, delegation, orchestration, memory, and multi-step execution.",
   },
   {
     label: "03",
-    title: "Draft and publish",
+    title: "RAG & Research Intelligence",
     description:
-      "Preview changes privately and publish only when the portfolio is ready to update.",
+      "Designing retrieval systems that give agents scoped context, verified sources, and useful answers.",
+  },
+  {
+    label: "04",
+    title: "Backend & Runtime Systems",
+    description:
+      "Working on APIs, async workflows, persistence, and the infrastructure that makes AI dependable.",
+  },
+  {
+    label: "05",
+    title: "Learning Systems",
+    description:
+      "Building structured learning experiences around curriculum state, practice, evidence, and mastery.",
+  },
+  {
+    label: "06",
+    title: "Evaluation & Reliability",
+    description:
+      "Making AI behavior observable and useful through evaluation, verification, failure handling, and feedback.",
   },
 ];
 
@@ -111,27 +129,27 @@ export default function HomePage() {
         <FeaturedProjects />
 
         <section
-          className="capabilities-section"
-          id="capabilities"
-          aria-labelledby="capabilities-title"
+          className="domains-section"
+          id="domains"
+          aria-labelledby="domains-title"
         >
           <div className="section-heading">
             <div>
-              <p className="eyebrow">FOUNDATION</p>
-              <h2 id="capabilities-title">Built around three simple modes.</h2>
+              <p className="eyebrow">DOMAINS OF FOCUS</p>
+              <h2 id="domains-title">What I Spend My Time On</h2>
             </div>
             <p>
-              The first version stays focused: a strong public view, a protected
-              editor, and content that can be saved and published safely.
+              The questions, systems, and engineering problems that keep me
+              curious and moving deeper into applied AI.
             </p>
           </div>
 
-          <div className="capability-grid">
-            {plannedCapabilities.map((capability) => (
-              <article className="capability-card" key={capability.label}>
-                <span className="card-number">{capability.label}</span>
-                <h3>{capability.title}</h3>
-                <p>{capability.description}</p>
+          <div className="domains-grid">
+            {focusDomains.map((domain) => (
+              <article className="domain-card" key={domain.label}>
+                <span className="card-number">{domain.label}</span>
+                <h3>{domain.title}</h3>
+                <p>{domain.description}</p>
               </article>
             ))}
           </div>
