@@ -8,41 +8,50 @@ import FeaturedProjects from "@/components/FeaturedProjects";
 const focusDomains = [
   {
     label: "01",
-    title: "AI Systems Engineering",
+    title: "AI Systems",
     description:
-      "Building AI systems that connect models to real workflows, tools, state, and outcomes.",
+      "How models, tools, state, and runtime logic work together when the system has to do more than produce an answer.",
   },
   {
     label: "02",
-    title: "Agentic Workflows",
+    title: "Backend Engineering",
     description:
-      "Exploring planning, delegation, orchestration, memory, and multi-step execution.",
+      "The boring-but-important machinery that keeps everything alive — APIs, services, databases, performance, and reliability.",
   },
   {
     label: "03",
-    title: "RAG & Research Intelligence",
+    title: "Retrieval & Memory",
     description:
-      "Designing retrieval systems that give agents scoped context, verified sources, and useful answers.",
+      "Helping systems remember the right thing without drowning the model in context.",
   },
   {
     label: "04",
-    title: "Backend & Runtime Systems",
+    title: "System Design",
     description:
-      "Working on APIs, async workflows, persistence, and the infrastructure that makes AI dependable.",
+      "State, failures, recovery, reliability, and all the things architecture has to account for.",
   },
   {
     label: "05",
-    title: "Learning Systems",
+    title: "Agentic Workflows",
     description:
-      "Building structured learning experiences around curriculum state, practice, evidence, and mastery.",
+      "Planning, delegation, tool use, and orchestration across multi-step AI workflows.",
   },
   {
     label: "06",
-    title: "Evaluation & Reliability",
+    title: "Learning & Evaluation",
     description:
-      "Making AI behavior observable and useful through evaluation, verification, failure handling, and feedback.",
+      "Building systems around practice, evidence, feedback, and reliable evaluation.",
   },
 ];
+
+const careerEntry = {
+  role: "System Engineer",
+  company: "Tata Consultancy Services",
+  period: "Apr 2024 – Present",
+  location: "Chennai, India",
+  description:
+    "Working across AI systems and backend engineering — building LLM-powered agent and retrieval systems, enterprise APIs, and reliable backend services for production workflows.",
+};
 
 export default function HomePage() {
   return (
@@ -133,26 +142,59 @@ export default function HomePage() {
           id="domains"
           aria-labelledby="domains-title"
         >
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">DOMAINS OF FOCUS</p>
-              <h2 id="domains-title">What I Spend My Time On</h2>
-            </div>
+          <div className="domains-intro">
+            <p className="eyebrow">DOMAINS OF FOCUS</p>
+            <h2 id="domains-title">What I Spend My Time On</h2>
             <p>
-              The questions, systems, and engineering problems that keep me
-              curious and moving deeper into applied AI.
+              Core engineering problems bridging intelligent model reasoning
+              with deterministic backend infrastructure.
             </p>
           </div>
 
-          <div className="domains-grid">
+          <div className="domains-list">
             {focusDomains.map((domain) => (
-              <article className="domain-card" key={domain.label}>
-                <span className="card-number">{domain.label}</span>
-                <h3>{domain.title}</h3>
+              <article className="domain-row" key={domain.label}>
+                <span className="domain-number">{domain.label}</span>
+                <h3 className="domain-title">{domain.title}</h3>
                 <p>{domain.description}</p>
               </article>
             ))}
           </div>
+        </section>
+
+        <section
+          className="career-section"
+          id="career"
+          aria-labelledby="career-title"
+        >
+          <div className="career-intro">
+            <div>
+              <p className="eyebrow">CAREER</p>
+              <h2 id="career-title">Where I Do This Professionally</h2>
+              <p>
+                Working across AI systems and backend engineering — building
+                LLM-powered agent and retrieval systems, enterprise APIs, and
+                reliable backend services for production workflows.
+              </p>
+            </div>
+            <Link className="secondary-button career-link" href="/about">
+              More about me <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <article className="career-card">
+            <div className="career-card-header">
+              <div>
+                <h3>{careerEntry.role}</h3>
+                <p className="career-company">{careerEntry.company}</p>
+              </div>
+              <p className="career-meta">
+                <span className="career-status" aria-hidden="true" />
+                {careerEntry.period} · {careerEntry.location}
+              </p>
+            </div>
+            <p className="career-description">{careerEntry.description}</p>
+          </article>
         </section>
       </main>
 
