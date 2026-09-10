@@ -1,85 +1,15 @@
 import { Activity, ArrowUpRight, Brain, Network } from "lucide-react";
+import Link from "next/link";
+import { projects, type PortfolioProject, type ProjectIcon } from "@/data/projects";
 
-type FeaturedProject = {
-  name: string;
-  system?: string;
-  status?: string;
-  badge?: string;
-  subtitle: string;
-  runtimeLabel: string;
-  runtimeFlow: string;
-  description: string;
-  tags: string[];
-  icon: typeof Activity;
-  featured?: boolean;
+const projectIcons: Record<ProjectIcon, typeof Activity> = {
+  activity: Activity,
+  network: Network,
+  brain: Brain,
 };
 
-const featuredProjects: FeaturedProject[] = [
-  {
-    name: "Trellis",
-    system: "SYSTEM 01",
-    status: "Active development",
-    badge: "FLAGSHIP SYSTEM",
-    subtitle: "State-Anchored Learning Intelligence",
-    runtimeLabel: "LEARNING RUNTIME",
-    runtimeFlow: "CURRICULUM → CONTEXT → PRACTICE → EVIDENCE → MASTERY",
-    description:
-      "An AI learning system I'm building to make technical learning structured, adaptive, and deeply practical — combining deterministic curriculum state with scoped LLM tutoring, retrieval, and evidence-based evaluation.",
-    tags: [
-      "State Machine",
-      "Curriculum Graph",
-      "Scoped Context",
-      "RAG",
-      "Evaluation",
-      "Evidence",
-      "Learning State",
-    ],
-    icon: Activity,
-    featured: true,
-  },
-  {
-    name: "Nexus",
-    system: "SYSTEM 02",
-    status: "Production project",
-    badge: "ENTERPRISE AI",
-    subtitle: "Enterprise Research Intelligence",
-    runtimeLabel: "RESEARCH RUNTIME",
-    runtimeFlow: "PLAN → RETRIEVE → REASON → VERIFY → SYNTHESIZE",
-    description:
-      "An agentic research system designed to turn complex business questions into structured, evidence-backed insights — combining agentic retrieval, tool use, reasoning, and source verification across multi-step research workflows.",
-    tags: [
-      "Agentic RAG",
-      "Tool Use",
-      "Web Retrieval",
-      "Source Verification",
-      "Structured Outputs",
-      "Async Workflows",
-    ],
-    icon: Network,
-  },
-  {
-    name: "Cognia",
-    system: "SYSTEM 03",
-    subtitle: "A Multi-Agent Framework, Built From Scratch",
-    runtimeLabel: "AGENT RUNTIME",
-    runtimeFlow: "DEFINE → DELEGATE → EXECUTE → COMMUNICATE → OBSERVE",
-    description:
-      "An experimental agent framework built from the ground up to explore the primitives behind multi-agent systems — from agent lifecycle and coordination to task execution, communication, and state management.",
-    tags: [
-      "Agent Runtime",
-      "Multi-Agent Systems",
-      "Task Delegation",
-      "Agent Communication",
-      "Tool Execution",
-      "State Management",
-      "Orchestration",
-    ],
-    icon: Brain,
-  },
-];
-
-function ProjectCard({ project }: { project: FeaturedProject }) {
-  const Icon = project.icon;
+export function ProjectCard({ project }: { project: PortfolioProject }) {
+  const Icon = projectIcons[project.icon];
 
   return (
     <article
@@ -87,12 +17,8 @@ function ProjectCard({ project }: { project: FeaturedProject }) {
     >
       <div className="project-card-header">
         <div className="project-card-meta">
-          {project.system && (
-            <span className="project-system">{project.system}</span>
-          )}
-          {project.system && project.status && (
-            <span className="project-meta-dot" />
-          )}
+          <span className="project-system">{project.system}</span>
+          {project.status && <span className="project-meta-dot" />}
           {project.status && <span>{project.status}</span>}
           {project.badge && (
             <span className="project-badge">{project.badge}</span>
@@ -124,17 +50,25 @@ function ProjectCard({ project }: { project: FeaturedProject }) {
       </div>
 
       <div className="project-card-footer">
-        <a href="/projects">
+        <Link href={`/projects/${project.slug}`}>
           <span>View case study</span>
           <ArrowUpRight aria-hidden="true" />
-        </a>
+        </Link>
+        {project.githubUrl && (
+          <a href={project.githubUrl} target="_blank" rel="noreferrer">
+            Repository ↗
+          </a>
+        )}
       </div>
     </article>
   );
 }
 
 export default function FeaturedProjects() {
-  const [flagship, ...secondaryProjects] = featuredProjects;
+  const flagship = projects.find((project) => project.featured) ?? projects[0];
+  const secondaryProjects = projects.filter(
+    (project) => project.slug !== flagship.slug,
+  );
 
   return (
     <section
@@ -151,16 +85,16 @@ export default function FeaturedProjects() {
             occasionally most of my sleep.
           </p>
         </div>
-        <a className="all-projects-link" href="/projects">
-          All Projects (3) <span aria-hidden="true">→</span>
-        </a>
+        <Link className="all-projects-link" href="/projects">
+          All Projects ({projects.length}) <span aria-hidden="true">→</span>
+        </Link>
       </div>
 
       <div className="featured-projects-grid">
         <ProjectCard project={flagship} />
         <div className="secondary-projects-grid">
           {secondaryProjects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </div>
