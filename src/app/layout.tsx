@@ -14,8 +14,8 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Personal Portfolio Tracker",
-  description: "A portfolio that can be updated through a visual content builder.",
+  title: { default: "Owais Raza — Backend & AI Engineer", template: "%s | Owais Raza" },
+  description: "Owais Raza builds AI systems, retrieval workflows, and reliable backend products. Explore selected work, engineering notes, and experiments.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

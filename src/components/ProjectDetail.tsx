@@ -8,6 +8,8 @@ import {
   Github,
 } from "lucide-react";
 import type { PortfolioProject } from "@/data/projects";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
 function ProjectSection({
   eyebrow,
@@ -37,6 +39,7 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
 
   return (
     <div className="site-shell">
+      <SiteHeader />
       <main className="project-detail-page">
         <header className="project-detail-header">
           <Link className="project-back-link" href="/projects">
@@ -164,6 +167,7 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
           </Link>
         </nav>
       </main>
+      <SiteFooter />
     </div>
   );
 }

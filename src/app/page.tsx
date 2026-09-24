@@ -1,9 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
-import SocialLinks from "@/components/SocialLinks";
-import { ArrowDown } from "lucide-react";
+import { Activity, ArrowRight, Check, Compass, Network } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import FeaturedProjects from "@/components/FeaturedProjects";
+import SiteFooter from "@/components/SiteFooter";
 
 const focusDomains = [
   {
@@ -55,153 +54,185 @@ const careerEntry = {
 
 export default function HomePage() {
   return (
-    <div className="site-shell">
-      <SiteHeader />
-
+    <div className="home-page">
+      <div className="home-top">
+        <div className="site-shell">
+          <SiteHeader />
+        </div>
+      </div>
       <main>
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-main">
-            <div className="hero-copy">
-              <p className="eyebrow">BACKEND AI ENGINEER · CHENNAI, INDIA</p>
-              <h1 id="hero-title">
-                Owais
-                <br />
-                <span className="hero-name-muted">Raza</span>
-              </h1>
-              <p className="hero-description">
-                I build AI systems that actually solve problems — not just
-                answer questions.
-              </p>
-              <div className="hero-supporting-copy">
-                <p>Most of my work starts with a simple question:</p>
-                <p className="hero-question">
-                  What if AI can do this or solve that?
+        <div className="home-top">
+          <div className="site-shell">
+            <section className="portfolio-hero" aria-labelledby="hero-title">
+              <div className="portfolio-hero-copy">
+                <p className="hero-pill">
+                  <span aria-hidden="true" /> Backend &amp; AI engineer · Chennai
                 </p>
-                <p className="hero-muted-copy">
-                  That keeps pulling me toward agentic workflows, RAG, backend
-                  systems, inference, and the engineering needed to make AI
-                  reliable in the real world.
+                <h1 id="hero-title">
+                  Building AI as <em>useful systems,</em> not isolated answers.
+                </h1>
+                <p className="portfolio-hero-description">
+                  I turn questions into working products — connecting models,
+                  evidence, application state, and the interfaces people use.
+                </p>
+                <div className="hero-actions">
+                  <Link className="primary-button" href="/projects">
+                    Explore my work <ArrowRight aria-hidden="true" />
+                  </Link>
+                  <Link className="secondary-button" href="/about">
+                    More about me
+                  </Link>
+                </div>
+                <p className="hero-caption">
+                  Thoughtful systems, built one clear step at a time.
                 </p>
               </div>
-              <div className="hero-actions">
-                <a className="primary-button" href="#vision">
-                  See what I&apos;m building
-                </a>
-                <Link className="secondary-button" href="/about">
-                  More about me
-                </Link>
+
+              <div className="hero-showcase" aria-label="A map of three selected projects">
+                <div className="showcase-context">
+                  <span>Current focus</span>
+                  <strong>
+                    <span aria-hidden="true" /> Systems that can be inspected
+                  </strong>
+                  <small>Learning · research · agent interfaces</small>
+                </div>
+                <div className="showcase-panel">
+                  <div className="showcase-heading">
+                    <span>SELECTED WORK / THE SYSTEMS</span>
+                    <span className="showcase-example">Explore</span>
+                  </div>
+                  <h2>Ideas with a runtime behind them.</h2>
+                  <div className="showcase-progress" aria-hidden="true">
+                    <span /><span /><span />
+                  </div>
+                  <p className="showcase-label">THREE QUESTIONS I KEEP RETURNING TO</p>
+                  <div className="showcase-projects">
+                    <Link href="/projects/trellis">
+                      <Activity aria-hidden="true" />
+                      <strong>Trellis</strong>
+                      <span>How does learning persist?</span>
+                    </Link>
+                    <Link href="/projects/nexus">
+                      <Network aria-hidden="true" />
+                      <strong>Nexus</strong>
+                      <span>Where is the evidence?</span>
+                    </Link>
+                    <Link href="/projects/voyage">
+                      <Compass aria-hidden="true" />
+                      <strong>Voyage</strong>
+                      <span>Can agents share the UI?</span>
+                    </Link>
+                  </div>
+                  <div className="showcase-connector" aria-hidden="true" />
+                  <div className="showcase-evidence">
+                    <div>
+                      <span>THE ENGINEERING THREAD</span>
+                      <Check aria-hidden="true" />
+                    </div>
+                    <p>Make state explicit. Keep evidence attached. Let people see what changed.</p>
+                    <small>Across learning, research, and agent-driven workflows</small>
+                  </div>
+                  <div className="showcase-result">
+                    <span>THE GOAL</span>
+                    <p>AI that is useful because the surrounding system is understandable.</p>
+                  </div>
+                </div>
+                <div className="showcase-footer-note">
+                  <span>↗</span>
+                  <div>
+                    <strong>Follow the work</strong>
+                    <small>From the idea to the actual runtime</small>
+                  </div>
+                </div>
               </div>
-              <div className="hero-connect">
-                <span>CONNECT</span>
-                <SocialLinks variant="inline" />
-              </div>
+            </section>
+          </div>
+        </div>
+        <div className="site-shell">
+          <section
+            className="intro-section"
+            id="vision"
+            aria-labelledby="vision-title"
+          >
+            <div className="section-label">
+              <span>THE IDEA</span>
             </div>
-
-            <div className="hero-panel">
-              <Image
-                className="hero-panel-image"
-                src="/images/ai-system-threads.jpg"
-                alt="A dark abstract network of connected digital threads"
-                fill
-                priority
-                sizes="(max-width: 760px) 100vw, 440px"
-              />
-            </div>
-          </div>
-
-          <div className="hero-scroll">
-            <a href="#vision">
-              <span>Scroll to explore</span>
-              <ArrowDown aria-hidden="true" />
-            </a>
-          </div>
-        </section>
-
-        <section
-          className="intro-section"
-          id="vision"
-          aria-labelledby="vision-title"
-        >
-          <div className="section-label">
-            <span>THE IDEA</span>
-          </div>
-          <div>
-            <h2 id="vision-title">A living view of the work.</h2>
-            <p>
-              The portfolio brings together the systems I am building, the ideas
-              I am exploring, and the engineering questions that keep pulling me
-              deeper.
-            </p>
-          </div>
-        </section>
-
-        <FeaturedProjects />
-
-        <section
-          className="domains-section"
-          id="domains"
-          aria-labelledby="domains-title"
-        >
-          <div className="domains-intro">
-            <p className="eyebrow">DOMAINS OF FOCUS</p>
-            <h2 id="domains-title">What I Spend My Time On</h2>
-            <p>
-              Core engineering problems bridging intelligent model reasoning
-              with deterministic backend infrastructure.
-            </p>
-          </div>
-
-          <div className="domains-list">
-            {focusDomains.map((domain) => (
-              <article className="domain-row" key={domain.label}>
-                <span className="domain-number">{domain.label}</span>
-                <h3 className="domain-title">{domain.title}</h3>
-                <p>{domain.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className="career-section"
-          id="career"
-          aria-labelledby="career-title"
-        >
-          <div className="career-intro">
             <div>
-              <p className="eyebrow">CAREER</p>
-              <h2 id="career-title">Where I Do This Professionally</h2>
+              <h2 id="vision-title">A living view of the work.</h2>
               <p>
-                Working across AI systems and backend engineering — building
-                LLM-powered agent and retrieval systems, enterprise APIs, and
-                reliable backend services for production workflows.
+                The portfolio brings together the systems I am building, the ideas
+                I am exploring, and the engineering questions that keep pulling me
+                deeper.
               </p>
             </div>
-            <Link className="secondary-button career-link" href="/about">
-              More about me <span aria-hidden="true">→</span>
-            </Link>
-          </div>
+          </section>
 
-          <article className="career-card">
-            <div className="career-card-header">
+          <FeaturedProjects />
+
+          <section
+            className="domains-section"
+            id="domains"
+            aria-labelledby="domains-title"
+          >
+            <div className="domains-intro">
+              <p className="eyebrow">DOMAINS OF FOCUS</p>
+              <h2 id="domains-title">What I Spend My Time On</h2>
+              <p>
+                Core engineering problems bridging intelligent model reasoning
+                with deterministic backend infrastructure.
+              </p>
+            </div>
+
+            <div className="domains-list">
+              {focusDomains.map((domain) => (
+                <article className="domain-row" key={domain.label}>
+                  <span className="domain-number">{domain.label}</span>
+                  <h3 className="domain-title">{domain.title}</h3>
+                  <p>{domain.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className="career-section"
+            id="career"
+            aria-labelledby="career-title"
+          >
+            <div className="career-intro">
               <div>
-                <h3>{careerEntry.role}</h3>
-                <p className="career-company">{careerEntry.company}</p>
+                <p className="eyebrow">CAREER</p>
+                <h2 id="career-title">Where I Do This Professionally</h2>
+                <p>
+                  Working across AI systems and backend engineering — building
+                  LLM-powered agent and retrieval systems, enterprise APIs, and
+                  reliable backend services for production workflows.
+                </p>
               </div>
-              <p className="career-meta">
-                <span className="career-status" aria-hidden="true" />
-                {careerEntry.period} · {careerEntry.location}
-              </p>
+              <Link className="secondary-button career-link" href="/about">
+                More about me <span aria-hidden="true">→</span>
+              </Link>
             </div>
-            <p className="career-description">{careerEntry.description}</p>
-          </article>
-        </section>
-      </main>
 
-      <footer className="site-footer">
-        <span>Personal Portfolio Tracker</span>
-        <span>Next.js · TypeScript</span>
-      </footer>
+            <article className="career-card">
+              <div className="career-card-header">
+                <div>
+                  <h3>{careerEntry.role}</h3>
+                  <p className="career-company">{careerEntry.company}</p>
+                </div>
+                <p className="career-meta">
+                  <span className="career-status" aria-hidden="true" />
+                  {careerEntry.period} · {careerEntry.location}
+                </p>
+              </div>
+              <p className="career-description">{careerEntry.description}</p>
+            </article>
+          </section>
+        </div>
+      </main>
+      <div className="site-shell">
+        <SiteFooter />
+      </div>
     </div>
   );
 }

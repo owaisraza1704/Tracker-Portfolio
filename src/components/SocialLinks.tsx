@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com/RazaNaqsh",
+    href: "https://github.com/owaisraza1704",
     icon: Github,
     external: true,
   },
@@ -21,30 +21,7 @@ const socialLinks = [
   },
 ];
 
-type SocialLinksProps = {
-  variant?: "icons" | "inline";
-};
-
-export default function SocialLinks({ variant = "icons" }: SocialLinksProps) {
-  if (variant === "inline") {
-    return (
-      <div className="social-inline-list">
-        {socialLinks.map(({ label, href, icon: Icon, external }) => (
-          <a
-            className="social-inline-link"
-            href={href}
-            key={label}
-            target={external ? "_blank" : undefined}
-            rel={external ? "noopener noreferrer" : undefined}
-          >
-            <Icon aria-hidden="true" />
-            <span>{label}</span>
-          </a>
-        ))}
-      </div>
-    );
-  }
-
+export default function SocialLinks() {
   return (
     <div className="social-icon-list">
       {socialLinks.map(({ label, href, icon: Icon, external }) => (

@@ -1,4 +1,4 @@
-import { Activity, ArrowUpRight, Brain, Network } from "lucide-react";
+import { Activity, ArrowUpRight, Brain, Compass, FlaskConical, Layers3, Network } from "lucide-react";
 import Link from "next/link";
 import { projects, type PortfolioProject, type ProjectIcon } from "@/data/projects";
 
@@ -6,6 +6,9 @@ const projectIcons: Record<ProjectIcon, typeof Activity> = {
   activity: Activity,
   network: Network,
   brain: Brain,
+  compass: Compass,
+  layers: Layers3,
+  flask: FlaskConical,
 };
 
 export function ProjectCard({ project }: { project: PortfolioProject }) {
@@ -68,7 +71,7 @@ export default function FeaturedProjects() {
   const flagship = projects.find((project) => project.featured) ?? projects[0];
   const secondaryProjects = projects.filter(
     (project) => project.slug !== flagship.slug,
-  );
+  ).slice(0, 2);
 
   return (
     <section

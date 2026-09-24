@@ -1,4 +1,4 @@
-export type ProjectIcon = "activity" | "network" | "brain";
+export type ProjectIcon = "activity" | "network" | "brain" | "compass" | "layers" | "flask";
 
 export type ProjectArea = {
   title: string;
@@ -64,6 +64,7 @@ export const projects: PortfolioProject[] = [
     ],
     icon: "activity",
     featured: true,
+    githubUrl: "https://github.com/owaisraza1704/Trellis-LearningJourney",
     systemAreas: [
       {
         title: "Curriculum Graph",
@@ -104,84 +105,84 @@ export const projects: PortfolioProject[] = [
     slug: "nexus",
     system: "SYSTEM 02",
     name: "Nexus",
-    status: "Production project",
-    badge: "ENTERPRISE AI",
-    subtitle: "Enterprise Research Intelligence",
-    runtimeLabel: "RESEARCH RUNTIME",
-    runtimeFlow: "PLAN → RETRIEVE → REASON → VERIFY → SYNTHESIZE",
+    status: "Local API MVP",
+    badge: "EVIDENCE-GROUNDED RESEARCH",
+    subtitle: "A source-grounded research engine",
+    runtimeLabel: "CURRENT API PATH",
+    runtimeFlow: "UPLOAD → PARSE → INDEX → RETRIEVE → ANSWER",
     description:
-      "An agentic research system designed to turn complex business questions into structured, evidence-backed insights — combining agentic retrieval, tool use, reasoning, and source verification across multi-step research workflows.",
+      "A local research API that turns a question over an uploaded PDF or DOCX into a saved answer with inspectable citations, or an explicit insufficient-context result.",
     heroIntro:
-      "Useful research is not just retrieval followed by generation. It is a workflow for deciding what to investigate, checking what was found, and making the result traceable.",
+      "A useful answer needs to show which document passage supports it and admit when the document does not contain enough evidence.",
     overview:
-      "Nexus is designed for research workflows where a question cannot be answered reliably with a single search or model call. It coordinates planning, retrieval, reasoning, verification, and synthesis so that complex questions can become structured outputs with visible supporting evidence.",
+      "The current MVP accepts one text PDF or DOCX, parses and chunks it, embeds the chunks in PostgreSQL with pgvector, retrieves relevant passages, and produces a persisted answer. Citation references retain document and location details so a saved answer can be inspected later. Multi-document planning and broader research orchestration remain future work.",
     tags: [
-      "Agentic RAG",
-      "Tool Use",
-      "Web Retrieval",
-      "Source Verification",
-      "Structured Outputs",
-      "Async Workflows",
+      "Document Ingestion",
+      "Vector Retrieval",
+      "Structured Answers",
+      "Citation Snapshots",
+      "Evaluation",
     ],
     stack: [
-      "Agentic Retrieval",
-      "Web Search",
-      "Source Verification",
-      "Tool Calling",
-      "Structured Outputs",
-      "Async Workflows",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Docling",
+      "Azure OpenAI",
+      "Python",
     ],
     icon: "network",
+    githubUrl: "https://github.com/owaisraza1704/Nexus-ResearchEngine",
     systemAreas: [
       {
-        title: "Research Planning",
-        tag: "PLAN",
+        title: "Document ingestion",
+        tag: "INGEST",
         description:
-          "Breaks a complex business question into research steps, constraints, and evidence requirements.",
+          "Parses PDFs and DOCX files into searchable chunks while retaining document structure and location details.",
       },
       {
-        title: "Agentic Retrieval",
-        tag: "RETRIEVE",
+        title: "Scoped retrieval",
+        tag: "SEARCH",
         description:
-          "Uses retrieval and tools iteratively rather than assuming one search result contains the complete answer.",
+          "Ranks passages from the selected document and saves the exact document snapshot used by the query.",
       },
       {
-        title: "Source Verification",
-        tag: "VERIFY",
+        title: "Grounded answer boundary",
+        tag: "ANSWER",
         description:
-          "Checks claims against their supporting sources before they are allowed into the synthesized result.",
+          "Limits generation to retrieved context, validates citation references, and returns insufficient context when needed.",
       },
       {
-        title: "Structured Synthesis",
-        tag: "OUTPUT",
+        title: "Saved evidence",
+        tag: "TRACE",
         description:
-          "Converts multi-step research into organized, evidence-backed insights that are easier to review and use.",
+          "Persists retrieval results, answer metadata, and citation locations for later inspection.",
       },
     ],
     engineeringQuestions: [
-      "How should an agent decide that it has enough evidence to stop researching?",
-      "How can sources remain connected to the claims they support through synthesis?",
-      "How should asynchronous retrieval and tool failures affect the research plan?",
-      "How can structured outputs stay useful when the underlying evidence is incomplete?",
+      "Which retrieved passages actually support each generated claim?",
+      "How can a citation remain stable after its source changes?",
+      "When should the API return insufficient context instead of an answer?",
+      "How well does retrieval work beyond the small labeled evaluation set?",
     ],
-    currentStatus: "Production project",
+    currentStatus: "Local API MVP",
     currentStatusDescription:
-      "A research-oriented system focused on dependable retrieval, verification, and structured delivery across multi-step workflows.",
+      "Single-document upload, retrieval, grounded answer, persistence, and citation inspection are implemented. A frontend and multi-document research flow are outside this release.",
   },
   {
     slug: "cognia",
     system: "SYSTEM 03",
     name: "Cognia",
-    status: "Experimental development",
+    status: "Runtime prototype",
     subtitle: "A Multi-Agent Framework, Built From Scratch",
     runtimeLabel: "AGENT RUNTIME",
-    runtimeFlow: "DEFINE → DELEGATE → EXECUTE → COMMUNICATE → OBSERVE",
+    runtimeFlow: "DEFINE → REASON → EXECUTE → CHECKPOINT → INSPECT",
     description:
-      "An experimental agent framework built from the ground up to explore the primitives behind multi-agent systems — from agent lifecycle and coordination to task execution, communication, and state management.",
+      "An experimental agent runtime exploring definitions, reasoning strategies, execution state, and saved checkpoints as foundations for richer agent workflows.",
     heroIntro:
-      "Multi-agent systems become interesting when coordination is treated as a runtime problem, not just a collection of prompts with different names.",
+      "An agent needs an execution path that can be observed and reasoned about, not just a role prompt.",
     overview:
-      "Cognia is an exploration of the machinery beneath multi-agent applications. It focuses on how agents are defined, how work is delegated, how execution and communication happen, and how shared state and observations shape the next action.",
+      "Cognia explores the mechanics behind agent applications. The current Python backend defines agents, resolves reasoning strategies, executes model-driven steps, and records progress through checkpoints. Broader multi-agent coordination remains an area of exploration.",
     tags: [
       "Agent Runtime",
       "Multi-Agent Systems",
@@ -202,28 +203,28 @@ export const projects: PortfolioProject[] = [
     icon: "brain",
     systemAreas: [
       {
-        title: "Agent Lifecycle",
+        title: "Agent definition",
         tag: "DEFINE",
         description:
-          "Defines the responsibilities, capabilities, and state transitions that make an agent a runtime participant.",
+          "Stores the agent configuration used to choose a reasoning strategy and start an execution.",
       },
       {
-        title: "Task Delegation",
-        tag: "DELEGATE",
+        title: "Reasoning strategies",
+        tag: "REASON",
         description:
-          "Explores how a larger objective can be divided, assigned, tracked, and brought back together.",
+          "Routes a run through simple or planning-oriented reasoning behavior.",
       },
       {
-        title: "Agent Communication",
-        tag: "COMMUNICATE",
+        title: "Execution loop",
+        tag: "EXECUTE",
         description:
-          "Makes messages, handoffs, and coordination explicit so collaboration is observable instead of hidden in prompts.",
+          "Tracks running, finished, and failed states while model responses drive the next step.",
       },
       {
-        title: "State & Observation",
+        title: "Checkpoints",
         tag: "OBSERVE",
         description:
-          "Maintains the runtime information needed to understand what happened and choose the next meaningful step.",
+          "Saves messages and output as execution progresses so the run can be inspected.",
       },
     ],
     engineeringQuestions: [
@@ -232,8 +233,111 @@ export const projects: PortfolioProject[] = [
       "How can delegated work be observed, interrupted, retried, or completed safely?",
       "What shared state is necessary for coordination without making every agent tightly coupled?",
     ],
-    currentStatus: "Experimental development",
+    currentStatus: "Runtime prototype",
     currentStatusDescription:
-      "An evolving framework for understanding multi-agent primitives through small, inspectable runtime experiments.",
+      "A Python backend contains agent APIs, execution endpoints, reasoning strategies, and checkpointed execution. The full visual multi-agent builder is still a direction rather than a finished product.",
+  },
+  {
+    slug: "voyage",
+    system: "SYSTEM 04",
+    name: "Voyage",
+    status: "Interactive prototype",
+    badge: "AGENT-NATIVE UI",
+    subtitle: "Travel planning through a shared human and agent interface",
+    runtimeLabel: "TRIP FLOW",
+    runtimeFlow: "EXPLORE → FILTER → PLAN → CONFIRM → BOOK",
+    description:
+      "A travel prototype where a visitor can use the normal UI or ask an agent to update the same destination, stay filters, itinerary, and simulated booking.",
+    githubUrl: "https://github.com/owaisraza1704/Voyage-AgentNativeTravelItinerary",
+    heroIntro:
+      "The interesting question is whether an agent can operate the application through meaningful capabilities while the person still sees and controls the same trip.",
+    overview:
+      "Voyage combines a browsable travel interface with a natural-language command dock. WebMCP exposes app actions to the agent; those actions update the same shared state as the graphical interface. Booking and cancellation ask for explicit confirmation. Destinations and stays are local data, and bookings are simulated rather than connected to a travel supplier.",
+    tags: ["WebMCP", "Shared State", "Agent UX", "Realtime Voice", "Confirmation"],
+    stack: ["Next.js", "React", "TypeScript", "WebMCP", "WebRTC", "SQLite"],
+    icon: "compass",
+    systemAreas: [
+      { title: "Shared trip state", tag: "STATE", description: "Keeps destination, dates, travelers, filters, itinerary, and booking visible across UI and agent actions." },
+      { title: "Semantic app tools", tag: "TOOLS", description: "Exposes meaningful travel operations through WebMCP instead of having the agent mimic browser clicks." },
+      { title: "Voice and text", tag: "INPUT", description: "Provides a command dock with text input and a Realtime voice path for conversational planning." },
+      { title: "Explicit confirmation", tag: "TRUST", description: "Pauses before simulated booking or cancellation so the visitor approves consequential actions." },
+    ],
+    engineeringQuestions: [
+      "How do UI actions and agent actions remain consistent when they change the same trip?",
+      "Which actions can happen immediately, and which require confirmation?",
+      "How does a voice session show what changed in the visible interface?",
+      "What should the app do when a requested stay is unavailable?",
+    ],
+    currentStatus: "Interactive prototype",
+    currentStatusDescription:
+      "Core browsing, itinerary, WebMCP, and simulated booking flows exist. The project does not connect to live inventory, real payments, or reservation providers.",
+  },
+  {
+    slug: "rezolve",
+    system: "SYSTEM 05",
+    name: "Rezolve",
+    status: "Design and prototype",
+    subtitle: "A live room for urgent technical help",
+    runtimeLabel: "SUPPORT FLOW",
+    runtimeFlow: "REQUEST → MATCH → CLAIM → CONNECT → RESOLVE",
+    description:
+      "A support marketplace concept centered on the hard part of live assignment: one resolver wins a claim, while unclaimed requests can move to a later follow-up path.",
+    githubUrl: "https://github.com/owaisraza1704/Project-Rezolve",
+    heroIntro:
+      "The core challenge is deciding who owns a request when several people try to claim it at once.",
+    overview:
+      "Rezolve explores urgent support as a stateful matching workflow. The design starts with requests and resolver claims, then expands toward an offline queue, notifications, and private communication. A UI and backend workspace exist, but the full realtime and load-tested workflow is still under development.",
+    tags: ["Realtime Systems", "Claim Races", "State Transitions", "Support UX"],
+    stack: ["React", "TypeScript", "FastAPI", "SQLAlchemy", "PostgreSQL"],
+    icon: "layers",
+    systemAreas: [
+      { title: "Ticket lifecycle", tag: "STATE", description: "Models a request from creation through live availability, claim, and offline follow-up." },
+      { title: "Single-winner claim", tag: "CORRECTNESS", description: "Treats concurrent claim attempts as the central backend correctness problem." },
+      { title: "Resolver workspace", tag: "UI", description: "Presents available work and a clear path from assignment to a support room." },
+      { title: "Later recovery", tag: "FOLLOW-UP", description: "Plans for unclaimed requests to remain useful when the live window closes." },
+    ],
+    engineeringQuestions: [
+      "How is one claim winner guaranteed under a burst of requests?",
+      "How does a request move from the live board into offline follow-up?",
+      "How can both participants rejoin the correct private room?",
+      "Where should notifications and realtime updates sit relative to the critical claim path?",
+    ],
+    currentStatus: "Design and prototype",
+    currentStatusDescription:
+      "The repository contains a UI, backend, and detailed implementation plan. The complete realtime matching flow and concurrency proof should not be treated as finished.",
+  },
+  {
+    slug: "agentconfig-evaluation",
+    system: "SYSTEM 06",
+    name: "AgentConfig Evaluation",
+    status: "Measured experiment",
+    badge: "MODEL EVALUATION",
+    subtitle: "Qwen3 fine-tuning measured against end-to-end reliability",
+    runtimeLabel: "EVALUATION PATH",
+    runtimeFlow: "DATASET → INFERENCE → VALIDATE → SCORE → DECIDE",
+    description:
+      "A reproducible experiment for converting requirements into structured agent configurations, comparing base Qwen3-1.7B with LoRA checkpoints on held-out cases.",
+    heroIntro:
+      "A model can sound better while becoming less useful if its structured responses stop matching the required schema.",
+    overview:
+      "The project defines an AgentConfig schema, a frozen 140/30/30 train-validation-test split, deterministic inference, structural checks, and semantic scoring. On 30 held-out requirements, the base model produced schema-valid outputs in 14 cases. Every evaluated fine-tuned checkpoint scored lower end-to-end, so the base model remained the baseline.",
+    tags: ["Qwen3", "LoRA", "Schema Validation", "Evaluation", "Apple Silicon"],
+    stack: ["Python", "MLX-LM", "vLLM-Metal", "Pydantic", "Qwen3-1.7B"],
+    icon: "flask",
+    systemAreas: [
+      { title: "Frozen dataset", tag: "DATA", description: "Separates 140 training, 30 validation, and 30 held-out test examples." },
+      { title: "Structural checks", tag: "VALIDATE", description: "Tests JSON parsing and required AgentConfig fields before judging semantic quality." },
+      { title: "Checkpoint comparison", tag: "MEASURE", description: "Scores the base model and three training checkpoints on the same test requirements." },
+      { title: "Deployment decision", tag: "DECIDE", description: "Retains the base model after adapters improved conditional semantics but reduced end-to-end reliability." },
+    ],
+    engineeringQuestions: [
+      "How should invalid structured outputs affect an overall model score?",
+      "When does fine-tuning improve a useful application outcome rather than one conditional metric?",
+      "How can schema repair be measured separately from raw model behavior?",
+      "What data or generation change would improve long task lists and no-tool cases?",
+    ],
+    currentStatus: "Evaluation complete",
+    currentStatusDescription:
+      "The documented 30-case comparison retained base Qwen3-1.7B: 46.7% schema-valid and 0.288 end-to-end versus a best adapter score of 0.278. Further experiments remain open.",
   },
 ];
