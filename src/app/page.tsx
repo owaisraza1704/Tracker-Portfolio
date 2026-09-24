@@ -92,9 +92,9 @@ export default function HomePage() {
                 <div className="showcase-context">
                   <span>Current focus</span>
                   <strong>
-                    <span aria-hidden="true" /> Systems that can be inspected
+                    <span aria-hidden="true" /> Inspectable systems
                   </strong>
-                  <small>Learning · research · agent interfaces</small>
+                  <small>Learning · research · agents</small>
                 </div>
                 <div className="showcase-panel">
                   <div className="showcase-heading">
