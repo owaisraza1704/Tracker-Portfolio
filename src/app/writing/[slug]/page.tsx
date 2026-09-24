@@ -40,8 +40,8 @@ export default async function NotePage({ params }: { params: Promise<{ slug: str
           ))}
         </div>
         <div className="article-end">
-          <p>Explore the project behind this note.</p>
-          <Link className="text-link" href={note.relatedProject}>View project <span aria-hidden="true">↗</span></Link>
+          <p>Continue exploring this idea.</p>
+          <Link className="text-link" href={note.relatedHref}>See related work <span aria-hidden="true">↗</span></Link>
         </div>
       </main>
       <SiteFooter />

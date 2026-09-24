@@ -23,7 +23,7 @@ These questions lead me across AI systems and backend engineering. I care about 
 
 **About** introduces my background, approach, and the areas I work in. I am a System Engineer at Tata Consultancy Services, and my independent projects give me room to explore the same engineering questions in public.
 
-**Thoughts** collects field notes drawn from the work: why schema validity changed a fine-tuning decision, what a citation needs to preserve, and how a person and an agent can share one application state.
+**Thoughts** collects field notes drawn from the work: model evaluation, citations, shared human and agent state, scoped learning contexts, durable workflow runs, live updates, and background jobs. Each note makes its current evidence and limits clear.
 
 **Lab** holds measured findings and smaller builds, from model evaluation and explainable pipelines to queues, events, live updates, media APIs, and a visual guide to systems fundamentals. It is where open questions stay visible.
 

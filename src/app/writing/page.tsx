@@ -14,8 +14,9 @@ export default function WritingPage() {
           <p className="eyebrow">THOUGHTS / FIELD NOTES</p>
           <h1>Notes from building and measuring.</h1>
           <p className="content-lead">
-            Short pieces on the engineering questions behind my projects: what
-            worked, what the evidence says, and where the limits still are.
+            Short pieces on decisions and lessons from my projects and small
+            experiments: what exists, what remains open, and why a design
+            choice matters.
           </p>
         </header>
 
