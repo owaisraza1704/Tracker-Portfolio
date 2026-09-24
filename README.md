@@ -25,7 +25,7 @@ These questions lead me across AI systems and backend engineering. I care about 
 
 **Thoughts** collects field notes drawn from the work: why schema validity changed a fine-tuning decision, what a citation needs to preserve, and how a person and an agent can share one application state.
 
-**Lab** holds smaller experiments and measured findings, including model evaluation, retrieval checks, agent execution, and explainable pipelines. It is where open questions stay visible.
+**Lab** holds measured findings and smaller builds, from model evaluation and explainable pipelines to queues, events, live updates, media APIs, and a visual guide to systems fundamentals. It is where open questions stay visible.
 
 The site also has a **Now** page for current focus and a **Contact** page for conversations about the work.
 
@@ -35,9 +35,11 @@ The site also has a **Now** page for current focus and a **Contact** page for co
 | --- | --- |
 | **Trellis** | A structured learning environment that keeps curriculum state, scoped AI help, exploration, and progress connected. |
 | **Nexus** | A source-grounded research API that retrieves document passages, saves inspectable citations, and can say when context is insufficient. |
-| **Cognia** | An experimental agent runtime with reasoning strategies, execution state, and checkpoints. |
+| **Cognia** | A backend for versioned agent workflows, durable run records, checkpointed execution, and resume. |
 | **Voyage** | A travel prototype where the normal interface and an agent operate the same trip state, with confirmation before simulated booking. |
 | **Rezolve** | A live support concept focused on request state, single-winner claims, and the path from matching to a private room. |
 | **AgentConfig Evaluation** | A Qwen3 fine-tuning experiment that measures structured-output validity and end-to-end usefulness before selecting a checkpoint. |
 
 The common thread is simple: an AI feature becomes more useful when the system around it is clear enough to inspect, test, and trust.
+
+The smaller prototypes come from the same habit: learn a system concept, build one observable path through it, and state clearly what the experiment has and has not established.

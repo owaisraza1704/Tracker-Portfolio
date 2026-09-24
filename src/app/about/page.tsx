@@ -23,7 +23,7 @@ const principles = [
 const capabilities = [
   { title: "AI systems", items: "Agent runtimes, tool use, structured outputs, model evaluation" },
   { title: "Retrieval", items: "Document ingestion, vector search, source grounding, citations" },
-  { title: "Backend", items: "Python APIs, data models, PostgreSQL, stateful workflows" },
+  { title: "Backend", items: "Python APIs, PostgreSQL, queues, events, and live updates" },
   { title: "Interfaces", items: "Next.js, React, TypeScript, human and agent interactions" },
 ];
 
@@ -61,6 +61,12 @@ export default function AboutPage() {
               exercised and understood. The interface matters, but so do the
               state transitions, stored evidence, failure behavior, and the
               measurements that tell us whether the system is improving.
+            </p>
+            <p>
+              I also keep working notes on processes, threads, scheduling,
+              memory, polling, pub/sub, and streaming. Small builds help me turn
+              those concepts into something I can observe: a queued task, an
+              inventory event, a live browser update, or a visual teaching scene.
             </p>
             <Link className="text-link" href="/projects">Explore the work <span aria-hidden="true">↗</span></Link>
           </div>
