@@ -1,73 +1,31 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-
-const principles = [
-  {
-    number: "01",
-    title: "Make the state visible",
-    description: "Whether it is a learner's progress, an agent run, or a support request, I want the system to show where it is and why it moved there.",
-  },
-  {
-    number: "02",
-    title: "Keep evidence attached",
-    description: "Retrieval and model output are useful only when someone can inspect the source, measure the result, and understand what remains uncertain.",
-  },
-  {
-    number: "03",
-    title: "Design for the full workflow",
-    description: "I enjoy connecting the model, API, data, interface, and failure path into one experience that a person can actually use.",
-  },
-];
-
-const capabilities = [
-  { title: "AI systems", items: "Agent runtimes, tool use, structured outputs, model evaluation" },
-  { title: "Retrieval", items: "Document ingestion, vector search, source grounding, citations" },
-  { title: "Backend", items: "Python APIs, PostgreSQL, queues, events, and live updates" },
-  { title: "Interfaces", items: "Next.js, React, TypeScript, human and agent interactions" },
-];
+import { getSiteContent } from "@/lib/site-store";
 
 export const metadata = { title: "About" };
 
-export default function AboutPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AboutPage({ searchParams }: { searchParams: Promise<{ draft?: string }> }) {
+  const { about } = await getSiteContent((await searchParams).draft === "1");
   return (
     <div className="site-shell">
       <SiteHeader />
       <main className="content-page">
         <header className="content-hero">
           <p className="eyebrow">ABOUT / THE ENGINEER</p>
-          <h1>Curious about what happens after the model responds.</h1>
-          <p className="content-lead">
-            I&apos;m Owais Raza, a backend and AI engineer based in Chennai. I build
-            systems where models, data, tools, and application state have to work
-            together reliably.
-          </p>
+          <h1>{about.title}</h1>
+          <p className="content-lead">{about.lead}</p>
         </header>
 
         <section className="content-section about-story" aria-labelledby="about-story-title">
           <div>
             <p className="eyebrow">MY APPROACH</p>
-            <h2 id="about-story-title">From an interesting idea to an inspectable system.</h2>
+            <h2 id="about-story-title">{about.approachTitle}</h2>
           </div>
           <div className="prose-copy">
-            <p>
-              My work usually begins with a practical question: what would it take
-              for an AI system to help someone complete a real task? That question
-              has led me through retrieval, agent execution, learning systems,
-              structured model evaluation, and the backend machinery around them.
-            </p>
-            <p>
-              I like breaking a large idea into a small runtime that can be
-              exercised and understood. The interface matters, but so do the
-              state transitions, stored evidence, failure behavior, and the
-              measurements that tell us whether the system is improving.
-            </p>
-            <p>
-              I also keep working notes on processes, threads, scheduling,
-              memory, polling, pub/sub, and streaming. Small builds help me turn
-              those concepts into something I can observe: a queued task, an
-              inventory event, a live browser update, or a visual teaching scene.
-            </p>
+            {about.approachParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
             <Link className="text-link" href="/projects">Explore the work <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
@@ -78,9 +36,9 @@ export default function AboutPage() {
             <h2 id="principles-title">What I try to make explicit.</h2>
           </div>
           <div className="editorial-grid">
-            {principles.map((principle) => (
-              <article className="editorial-card" key={principle.number}>
-                <span className="card-index">{principle.number}</span>
+            {about.principles.map((principle, index) => (
+              <article className="editorial-card" key={index}>
+                <span className="card-index">{principle.number || String(index + 1).padStart(2, "0")}</span>
                 <h3>{principle.title}</h3>
                 <p>{principle.description}</p>
               </article>
@@ -95,16 +53,12 @@ export default function AboutPage() {
           </div>
           <article className="experience-entry">
             <div>
-              <h3>System Engineer</h3>
-              <p>Tata Consultancy Services</p>
+              <h3>{about.experience.role}</h3>
+              <p>{about.experience.company}</p>
             </div>
             <div>
-              <span>Apr 2024 — Present · Chennai, India</span>
-              <p>
-                Building and working with LLM-powered systems, backend APIs, and
-                production workflows. My public project work explores the same
-                questions through independent prototypes and experiments.
-              </p>
+              <span>{about.experience.period}</span>
+              <p>{about.experience.description}</p>
             </div>
           </article>
         </section>
@@ -115,8 +69,8 @@ export default function AboutPage() {
             <h2 id="capabilities-title">The areas I keep returning to.</h2>
           </div>
           <div className="capability-list">
-            {capabilities.map((capability) => (
-              <div className="capability-row" key={capability.title}>
+            {about.capabilities.map((capability, index) => (
+              <div className="capability-row" key={index}>
                 <h3>{capability.title}</h3>
                 <p>{capability.items}</p>
               </div>

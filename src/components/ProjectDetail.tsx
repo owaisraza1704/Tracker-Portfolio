@@ -77,8 +77,8 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
           </div>
 
           <div className="project-detail-tags">
-            {project.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+            {project.tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
             ))}
           </div>
         </header>
@@ -98,7 +98,7 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
         >
           <div className="project-runtime-detail">
             {runtimeSteps.map((step, index) => (
-              <div className="project-runtime-step" key={step}>
+              <div className="project-runtime-step" key={index}>
                 <span>0{index + 1}</span>
                 <strong>{step}</strong>
                 {index < runtimeSteps.length - 1 && (
@@ -115,8 +115,8 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
           description="The main responsibilities that make the project understandable as a system rather than a single model call."
         >
           <div className="project-area-grid">
-            {project.systemAreas.map((area) => (
-              <article className="project-area-card" key={area.title}>
+            {project.systemAreas.map((area, index) => (
+              <article className="project-area-card" key={index}>
                 <div className="project-area-card-header">
                   <h3>{area.title}</h3>
                   <span>{area.tag}</span>
@@ -133,8 +133,8 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
           description="The difficult questions behind the implementation."
         >
           <div className="project-question-list">
-            {project.engineeringQuestions.map((question) => (
-              <div className="project-question" key={question}>
+            {project.engineeringQuestions.map((question, index) => (
+              <div className="project-question" key={index}>
                 <CheckCircle2 aria-hidden="true" />
                 <span>{question}</span>
               </div>
@@ -144,8 +144,8 @@ export default function ProjectDetail({ project }: { project: PortfolioProject }
 
         <ProjectSection eyebrow="IMPLEMENTATION" title="Technology and principles">
           <div className="project-detail-tags project-stack-tags">
-            {project.stack.map((item) => (
-              <span key={item}>{item}</span>
+            {project.stack.map((item, index) => (
+              <span key={index}>{item}</span>
             ))}
           </div>
         </ProjectSection>

@@ -1,37 +1,33 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { getSiteContent } from "@/lib/site-store";
 
 export const metadata = { title: "Now" };
 
-export default function NowPage() {
+export const dynamic = "force-dynamic";
+
+export default async function NowPage({ searchParams }: { searchParams: Promise<{ draft?: string }> }) {
+  const { now } = await getSiteContent((await searchParams).draft === "1");
   return (
     <div className="site-shell">
       <SiteHeader />
       <main className="content-page">
         <header className="content-hero">
           <p className="eyebrow">NOW / SEPTEMBER 2026</p>
-          <h1>Where my attention is going.</h1>
-          <p className="content-lead">The projects and questions currently shaping my independent work.</p>
+          <h1>{now.title}</h1>
+          <p className="content-lead">{now.lead}</p>
         </header>
 
         <section className="content-section" aria-label="Current focus">
           <div className="now-list">
-            <article className="now-row">
-              <span className="card-index">01 / BUILDING</span>
-              <div><h2>Trellis</h2><p>Working toward a learning environment where a structured path, scoped AI help, exploration threads, and saved progress stay connected.</p></div>
-              <Link className="text-link" href="/projects/trellis">View work ↗</Link>
-            </article>
-            <article className="now-row">
-              <span className="card-index">02 / TESTING</span>
-              <div><h2>Nexus</h2><p>Testing the local, single-document research API: ingestion, retrieval, bounded answers, citation snapshots, and explicit insufficient-context responses.</p></div>
-              <Link className="text-link" href="/projects/nexus">View work ↗</Link>
-            </article>
-            <article className="now-row">
-              <span className="card-index">03 / MEASURING</span>
-              <div><h2>Model reliability</h2><p>Comparing structured-output checkpoints by schema validity and end-to-end usefulness, not by conditional semantic score alone.</p></div>
-              <Link className="text-link" href="/projects/agentconfig-evaluation">View work ↗</Link>
-            </article>
+            {now.focus.map((item, index) => (
+              <article className="now-row" key={index}>
+                <span className="card-index">{item.label}</span>
+                <div><h2>{item.title}</h2><p>{item.description}</p></div>
+                <Link className="text-link" href={item.href as `/projects/${string}`}>View work ↗</Link>
+              </article>
+            ))}
           </div>
         </section>
         <section className="page-cta">

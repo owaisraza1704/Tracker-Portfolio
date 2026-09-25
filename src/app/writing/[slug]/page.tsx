@@ -3,20 +3,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { notes } from "@/data/writing";
+import { getSiteContent } from "@/lib/site-store";
 
-export function generateStaticParams() {
-  return notes.map((note) => ({ slug: note.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ draft?: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const { notes } = await getSiteContent((await searchParams).draft === "1");
   const note = notes.find((item) => item.slug === slug);
   return note ? { title: note.title, description: note.summary } : {};
 }
 
-export default async function NotePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function NotePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ draft?: string }> }) {
   const { slug } = await params;
+  const { notes } = await getSiteContent((await searchParams).draft === "1");
   const note = notes.find((item) => item.slug === slug);
 
   if (!note) notFound();
@@ -32,10 +32,10 @@ export default async function NotePage({ params }: { params: Promise<{ slug: str
           <p className="content-lead">{note.summary}</p>
         </header>
         <div className="article-body">
-          {note.sections.map((section) => (
-            <section className="article-section" key={section.heading}>
+          {note.sections.map((section, index) => (
+            <section className="article-section" key={index}>
               <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.paragraphs.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
             </section>
           ))}
         </div>

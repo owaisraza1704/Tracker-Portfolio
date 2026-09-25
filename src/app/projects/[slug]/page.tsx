@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectDetail from "@/components/ProjectDetail";
-import { projects } from "@/data/projects";
+import { getSiteContent } from "@/lib/site-store";
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ draft?: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const { projects } = await getSiteContent((await searchParams).draft === "1");
   const project = projects.find((item) => item.slug === slug);
   return project ? { title: project.name, description: project.description } : {};
 }
 
 export default async function ProjectDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ draft?: string }>;
 }) {
   const { slug } = await params;
+  const { projects } = await getSiteContent((await searchParams).draft === "1");
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {

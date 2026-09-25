@@ -1,11 +1,15 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { notes } from "@/data/writing";
+import { getSiteContent } from "@/lib/site-store";
 
 export const metadata = { title: "Thoughts" };
 
-export default function WritingPage() {
+export const dynamic = "force-dynamic";
+
+export default async function WritingPage({ searchParams }: { searchParams: Promise<{ draft?: string }> }) {
+  const draft = (await searchParams).draft === "1";
+  const { notes } = await getSiteContent(draft);
   return (
     <div className="site-shell">
       <SiteHeader />
@@ -27,10 +31,10 @@ export default function WritingPage() {
                 <span className="card-index">0{index + 1}</span>
                 <div>
                   <p className="eyebrow">{note.category}</p>
-                  <h2><Link href={`/writing/${note.slug}`}>{note.title}</Link></h2>
+                  <h2><Link href={`/writing/${note.slug}${draft ? "?draft=1" : ""}` as `/writing/${string}`}>{note.title}</Link></h2>
                   <p>{note.summary}</p>
                 </div>
-                <Link className="note-arrow" href={`/writing/${note.slug}`} aria-label={`Read ${note.title}`}>↗</Link>
+                <Link className="note-arrow" href={`/writing/${note.slug}${draft ? "?draft=1" : ""}` as `/writing/${string}`} aria-label={`Read ${note.title}`}>↗</Link>
               </article>
             ))}
           </div>

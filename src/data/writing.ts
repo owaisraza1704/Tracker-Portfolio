@@ -3,7 +3,7 @@ export type EngineeringNote = {
   category: string;
   title: string;
   summary: string;
-  relatedHref: "/projects/agentconfig-evaluation" | "/projects/nexus" | "/projects/voyage" | "/projects/trellis" | "/projects/cognia" | "/lab";
+  relatedHref: `/projects/${string}` | "/lab";
   sections: { heading: string; paragraphs: string[] }[];
 };
 

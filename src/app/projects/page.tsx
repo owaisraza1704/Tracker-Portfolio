@@ -1,9 +1,13 @@
 import { ProjectCard } from "@/components/FeaturedProjects";
-import { projects } from "@/data/projects";
+import { getSiteContent } from "@/lib/site-store";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
-export default function ProjectsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ProjectsPage({ searchParams }: { searchParams: Promise<{ draft?: string }> }) {
+  const draft = (await searchParams).draft === "1";
+  const { projects } = await getSiteContent(draft);
   return (
     <div className="site-shell">
       <SiteHeader />
@@ -19,7 +23,7 @@ export default function ProjectsPage() {
 
         <div className="projects-list">
           {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} draft={draft} />
           ))}
         </div>
       </main>

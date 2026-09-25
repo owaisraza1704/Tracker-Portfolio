@@ -23,6 +23,8 @@ export type PortfolioProject = {
   stack: string[];
   icon: ProjectIcon;
   featured?: boolean;
+  showcase?: boolean;
+  showcaseQuestion?: string;
   systemAreas: ProjectArea[];
   engineeringQuestions: string[];
   currentStatus: string;
@@ -64,6 +66,8 @@ export const projects: PortfolioProject[] = [
     ],
     icon: "activity",
     featured: true,
+    showcase: true,
+    showcaseQuestion: "How does learning persist?",
     githubUrl: "https://github.com/owaisraza1704/Trellis-LearningJourney",
     systemAreas: [
       {
@@ -103,6 +107,8 @@ export const projects: PortfolioProject[] = [
   },
   {
     slug: "nexus",
+    showcase: true,
+    showcaseQuestion: "Where is the evidence?",
     system: "SYSTEM 02",
     name: "Nexus",
     status: "Local API MVP",
@@ -238,6 +244,8 @@ export const projects: PortfolioProject[] = [
   },
   {
     slug: "voyage",
+    showcase: true,
+    showcaseQuestion: "Can agents share the UI?",
     system: "SYSTEM 04",
     name: "Voyage",
     status: "Interactive prototype",

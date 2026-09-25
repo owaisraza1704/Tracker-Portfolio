@@ -1,8 +1,8 @@
 import { Activity, ArrowUpRight, Brain, Compass, FlaskConical, Layers3, Network } from "lucide-react";
 import Link from "next/link";
-import { projects, type PortfolioProject, type ProjectIcon } from "@/data/projects";
+import { type PortfolioProject, type ProjectIcon } from "@/data/projects";
 
-const projectIcons: Record<ProjectIcon, typeof Activity> = {
+export const projectIcons: Record<ProjectIcon, typeof Activity> = {
   activity: Activity,
   network: Network,
   brain: Brain,
@@ -11,7 +11,7 @@ const projectIcons: Record<ProjectIcon, typeof Activity> = {
   flask: FlaskConical,
 };
 
-export function ProjectCard({ project }: { project: PortfolioProject }) {
+export function ProjectCard({ project, draft = false }: { project: PortfolioProject; draft?: boolean }) {
   const Icon = projectIcons[project.icon];
 
   return (
@@ -47,13 +47,13 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
       <p className="project-description">{project.description}</p>
 
       <div className="project-tags">
-        {project.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
+        {project.tags.map((tag, index) => (
+          <span key={index}>{tag}</span>
         ))}
       </div>
 
       <div className="project-card-footer">
-        <Link href={`/projects/${project.slug}`}>
+        <Link href={`/projects/${project.slug}${draft ? "?draft=1" : ""}` as `/projects/${string}`}>
           <span>View case study</span>
           <ArrowUpRight aria-hidden="true" />
         </Link>
@@ -67,7 +67,8 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
   );
 }
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({ projects, draft = false }: { projects: PortfolioProject[]; draft?: boolean }) {
+  if (projects.length === 0) return null;
   const flagship = projects.find((project) => project.featured) ?? projects[0];
   const secondaryProjects = projects.filter(
     (project) => project.slug !== flagship.slug,
@@ -94,10 +95,10 @@ export default function FeaturedProjects() {
       </div>
 
       <div className="featured-projects-grid">
-        <ProjectCard project={flagship} />
+        <ProjectCard project={flagship} draft={draft} />
         <div className="secondary-projects-grid">
           {secondaryProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} draft={draft} />
           ))}
         </div>
       </div>
