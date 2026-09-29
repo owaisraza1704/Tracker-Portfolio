@@ -4,6 +4,8 @@
 
 ![Portfolio landing page showing the hero and selected work in Trellis, Nexus, and Voyage](docs/images/portfolio-hero.png)
 
+Check live - https://tracker-portfolio-five.vercel.app/
+
 I build AI as useful systems, not isolated answers. My work connects models with the less visible engineering around them: application state, retrieval, evidence, APIs, evaluation, and interfaces that let people understand what happened.
 
 This portfolio is a record of the products, prototypes, and questions shaping that work. Some projects are working local systems; others are experiments still being developed. Their pages describe both the design and the current state.
